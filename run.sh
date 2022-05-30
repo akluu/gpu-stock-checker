@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[ ! -e venv ]]; then
+if [[ ! -d "venv" ]]; then
     python3 -m venv
 fi
 source venv/bin/activate
