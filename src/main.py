@@ -8,11 +8,6 @@ API_KEY = "?apiKey=" + os.environ.get("BBKEY")
 OPTIONS = "&sort=onlineAvailability.asc&show=onlineAvailability,addToCartUrl&format=json"
 full_link = BASE_URL + API_KEY + OPTIONS
 
-# print(os.environ.get("BBKEY"))
-# response = requests.get(full_link)
-# print(response.status_code)
-# print(response.json())
-
 async def getResponse():
     while True:
         response = requests.get(full_link)
