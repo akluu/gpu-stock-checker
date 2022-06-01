@@ -13,7 +13,7 @@ async def getResponse():
     while True:
         response = requests.get(full_link)
         if response.status_code != 200:
-            await asyncio.sleep(60)
+            await asyncio.sleep(60*5)
             continue
         else:
             return response
@@ -55,7 +55,7 @@ async def main():
                         attempts += 1
                 else:
                     publishStock(url)
-                await asyncio.sleep(3)
+                await asyncio.sleep(15)
             except asyncio.TimeoutError:
                 print("Bad Status Code")
                 publishError()
