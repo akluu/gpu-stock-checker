@@ -1,18 +1,11 @@
 import boto3
+region_name = "us-west-2"
+sns_client = boto3.client('sns',region_name=region_name)
+arns = sns_client.list_topics()['Topics']
 def publishStock(url):
-    arn = 'arn:aws:sns:us-west-2:729495428235:stock_alert'
-    sns_client = boto3.client(
-        'sns',
-        region_name='us-west-2'
-    )
-    response = sns_client.publish(
-        TopicArn=arn, Message="GPUS in Stock! Link: " + url)
+    arn = arns[1]['TopicArn']
+    sns_client.publish(TopicArn=arn, Message="GPUS in Stock! Link: " + url)
 
 def publishError():
-    arn = 'arn:aws:sns:us-west-2:729495428235:code_broken_alert'
-    sns_client = boto3.client(
-        'sns',
-        region_name='us-west-2'
-    )
-    response = sns_client.publish(
-        TopicArn=arn, Message="Code caught an error.")
+    arn = arns[0]['TopicArn']
+    sns_client.publish(TopicArn=arn, Message="Code caught an error.")
