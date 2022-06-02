@@ -1,6 +1,5 @@
 import requests
 import asyncio
-import boto3
 from publish import publishError, publishStock
 from get import get_key
 from datetime import datetime
@@ -30,7 +29,7 @@ async def main():
                 last_time_in_stock = response.json()['products'][0]['onlineAvailabilityUpdateDate']
                 url = response.json()['products'][0]['addToCartUrl']
                 if(not in_stock):
-                        print('Time=' + str(datetime.now()) + '- Attempt=' + str(attempts) + '- LastTimeInStock=' + str(last_time_in_stock))
+                        print('Time=' + str(datetime.utcnow()) + '- Attempt=' + str(attempts) + '- LastTimeInStock=' + str(last_time_in_stock))
                         attempts += 1
                 else:
                     publishStock(url)
