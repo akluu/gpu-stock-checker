@@ -37,7 +37,7 @@ async def main():
             except Exception as e:
                 print(e)
                 publishError()
-                asyncio.sleep(60*60)
+                await asyncio.sleep(60*60)
                 continue
 
 asyncio.run(main())
