@@ -34,11 +34,11 @@ async def main():
                 else:
                     publishStock(url)
                 await asyncio.sleep(15)
-            except asyncio.TimeoutError:
-                print("Bad Status Code")
+            except Exception as e:
+                print(e)
                 publishError()
+                asyncio.sleep(60*60)
                 continue
-
 
 asyncio.run(main())
 
